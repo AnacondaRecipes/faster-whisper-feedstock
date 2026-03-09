@@ -1,0 +1,51 @@
+{% set name = "faster-whisper" %}
+{% set version = "1.2.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/SYSTRAN/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: ff0b5428b3a074cd63f580ae73fa21f7d9fd3bba28e0e2e097868d78d5b06f2f
+
+build:
+  number: 0
+  skip: true  # [py<39]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools
+  run:
+    - python
+    - ctranslate2 >=4.0,<5
+    - huggingface_hub >=0.23
+    - tokenizers >=0.13,<1
+    - onnxruntime >=1.14,<2
+    - av >=11
+    - tqdm
+
+test:
+  imports:
+    - faster_whisper
+  requires:
+    - pip
+  commands:
+    - pip check
+
+about:
+  home: https://github.com/SYSTRAN/faster-whisper
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: Faster Whisper transcription with CTranslate2
+  description: |
+    faster-whisper is a reimplementation of OpenAI's Whisper model using
+    CTranslate2, which is a fast inference engine for Transformer models.
+    This implementation is up to 4 times faster than openai/whisper for the
+    same accuracy while using less memory.
+  doc_url: https://github.com/SYSTRAN/faster-whisper
+  dev_url: https://github.com/SYSTRAN/faster-whisper
