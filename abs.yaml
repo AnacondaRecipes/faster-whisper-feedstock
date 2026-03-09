@@ -7,5 +7,5 @@ build_env_vars:
   ANACONDA_ROCKET_ENABLE_PY314: yes
 
 # ctranslate2 is building in staging
-staging_channels:
-  - ctranslate2-4.7.1-staging
+channels:
+  - https://staging.continuum.io/pbp/ctranslate2-4.7.1-staging
