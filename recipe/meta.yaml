@@ -11,7 +11,8 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<39]
+  # av (PyAV) requires python >=3.11 upstream
+  skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
