@@ -23,7 +23,7 @@ requirements:
   run:
     - python
     - ctranslate2 >=4.0,<5
-    - huggingface_hub >=0.23
+    - huggingface_hub >=0.21
     - tokenizers >=0.13,<1
     - onnxruntime >=1.14,<2
     - av >=11
