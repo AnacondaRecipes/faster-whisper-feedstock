@@ -11,8 +11,7 @@ source:
 
 build:
   number: 0
-  # av (PyAV) requires python >=3.11 upstream;
-  # onnxruntime has no py314 builds yet in pkgs/main
+  # onnxruntime in pkgs/main skips py<311 and has no py314 builds yet
   skip: true  # [py<311 or py>313]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -37,6 +36,7 @@ test:
     - pip
   commands:
     - pip check
+    - python -c "from faster_whisper import WhisperModel, BatchedInferencePipeline"
 
 about:
   home: https://github.com/SYSTRAN/faster-whisper
@@ -51,3 +51,7 @@ about:
     same accuracy while using less memory.
   doc_url: https://github.com/SYSTRAN/faster-whisper
   dev_url: https://github.com/SYSTRAN/faster-whisper
+
+extra:
+  recipe-maintainers:
+    - xkong-anaconda
