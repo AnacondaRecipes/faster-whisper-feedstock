@@ -11,8 +11,9 @@ source:
 
 build:
   number: 0
-  # av (PyAV) requires python >=3.11 upstream
-  skip: true  # [py<311]
+  # av (PyAV) requires python >=3.11 upstream;
+  # onnxruntime has no py314 builds yet in pkgs/main
+  skip: true  # [py<311 or py>313]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
